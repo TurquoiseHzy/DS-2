@@ -74,6 +74,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="avl.h" />
+    <ClInclude Include="dlinklist.h" />
     <ClInclude Include="getkey.h" />
   </ItemGroup>
   <ItemGroup>

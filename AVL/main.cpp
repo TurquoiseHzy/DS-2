@@ -1,5 +1,6 @@
 #include"avl.h"
 #include"getkey.h"
+#include"dlinklist.h"
 int main(){
 	AVLTree<int,int> a;
 	a.Insert(5);
