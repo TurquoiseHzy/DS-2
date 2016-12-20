@@ -6,13 +6,14 @@ public:
 	int TermID;
 	int DocID;
 	int Times;
-	DLinkListNode *next;
+	DLinkListNode *next,*pre;
 public:
 	DLinkListNode(int TID,int DID,int T):
 		TermID(TID),
 		DocID(DID),
 		Times(T),
-		next(NULL)
+		next(NULL),
+		pre(NULL)
 	{
 	}
 };
@@ -43,10 +44,13 @@ public:
 				now = now -> next;
 			}
 			if(now->next != NULL){
+				now -> next -> pre = newNode;
 				newNode -> next = now -> next;
+				newNode -> pre =now;
 				now -> next = newNode;
 			}
 			else{
+				newNode->pre = tail;
 				tail->next = newNode;
 				tail = newNode;
 			}
@@ -67,7 +71,14 @@ public:
 	}
 
 	void Edit(int DocID,int Times){
-		
+		DLinkListNode *editNode = Search(DocID);
+		if(editNode -> pre != NULL){
+			editNode -> pre -> next = editNode -> next;
+		}
+		if(editNode -> next != NULL){
+			editNode -> next -> pre = editNode -> pre;
+		}
+		Add(editNode->TermID,DocID,Times);
 	}
 };
 #endif
